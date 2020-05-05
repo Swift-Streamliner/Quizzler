@@ -27,15 +27,21 @@ import Foundation
     ]
     
     var questionNuber = 0
+    var score = 0
     
-    func checkAnswer(_ userAnswer: String) -> Bool  {
+    mutating func checkAnswer(_ userAnswer: String) -> Bool  {
         if userAnswer == quiz[questionNuber].answer {
             // User got it right
+            score += 1
             return true
         } else {
             // User got it wrong
             return false
         }
+    }
+    
+    func getScore() -> Int {
+        return score
     }
     
     func getQuestinText() -> String {
@@ -46,11 +52,12 @@ import Foundation
         return Float(questionNuber + 1) /  Float(quiz.count)
     }
     
-    func nextQuestion(){
+    mutating func nextQuestion(){
          if questionNuber < quiz.count - 1 {
              questionNuber += 1
          } else {
              questionNuber = 0
+            score = 0
          } 
     }
     
